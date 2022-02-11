@@ -10,5 +10,7 @@ export default createStore({
   },
   modules: {
     user
+  },
+  getters: {
   }
 })

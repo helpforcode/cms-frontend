@@ -17,12 +17,12 @@ export default {
     }
   },
   mounted() {
-    this.$http
-        .get('/get')
-        .then(response => (console.log(response)))
-        .catch(function (error) { // 请求失败处理
-          console.log(error);
-        });
+    // this.$http
+    //     .get('/get')
+    //     .then(response => (console.log(response)))
+    //     .catch(function (error) { // 请求失败处理
+    //       console.log(error);
+    //     });
   }
 }
 </script>

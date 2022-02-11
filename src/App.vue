@@ -2,10 +2,44 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/login">Login</router-link>
+    <div v-if="state.token">
+      <a @click="logout">Logout</a>
+    </div>
+    <div v-else>
+      <router-link to="/login">Login</router-link>
+    </div>
   </div>
   <router-view/>
 </template>
+
+<script>
+
+import {reactive} from 'vue'
+
+export default {
+  setup() {
+    const state = reactive({
+      token: ''
+    })
+    return {
+      state
+    }
+  },
+  mounted() {
+    this.state.token = this.$store.getters.userToken
+    // todo: this.userToken is not getters.userToken
+    console.log(this.$store.getters.userToken)
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logoutAction').then(() => {
+        console.log('you have logout')
+        this.$router.push({ name: 'Login'})
+      })
+    }
+  }
+}
+</script>
 
 <style>
 *,

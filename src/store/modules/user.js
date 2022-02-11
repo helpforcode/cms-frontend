@@ -39,6 +39,11 @@ export default {
                 resolve()
             }))
         }
+    },
+    getters: {
+        userToken: () => {
+            return ls.get(ACCESS_TOKEN)
+        }
     }
 }
 
