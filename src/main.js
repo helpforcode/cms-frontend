@@ -6,7 +6,11 @@ import http from './http/http'
 // axios interceptor
 import './http/axios'
 
-let app = createApp(App).use(store).use(router);
+import '@/permission'
+
+let app = createApp(App).use(store)
+    .use(router)
+;
 // use axios
 app.config.globalProperties.$http = http;
 app.mount('#app')
