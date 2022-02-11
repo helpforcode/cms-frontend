@@ -1,6 +1,8 @@
 import {login} from "@/api/login";
+import ls from '@/storage'
+import {ACCESS_TOKEN} from '@/store/constants'
 
-const user = {
+export default {
     state: {
         token: ''
     },
@@ -11,20 +13,31 @@ const user = {
         }
     },
     actions: {
-        Login({commit}, userInfo) {
+        loginAction({commit}, userInfo) {
             return new Promise((resolve, reject) => {
                 login(userInfo).then(response => {
+                    if (response.status === 200 && response.data.code === 200) {
+                        const token = response.data.data
+                        // ls.set(ACCESS_TOKEN, token, 7 * 24 * 60 * 60 * 1000)
+                        ls.set(ACCESS_TOKEN, token, 2 * 60 * 1000) // 2min
 
-                    console.log(response)
-                    commit('SET_TOKEN', 'whatever')
-
-                    resolve(response)
+                        commit('SET_TOKEN', token)
+                        resolve(response)
+                    } else {
+                        reject(response)
+                    }
                 }).catch(error => {
                     reject(error)
                 })
             })
+        },
+        logoutAction({commit}) {
+            return new Promise((resolve => {
+                ls.remove(ACCESS_TOKEN)
+                commit('SET_TOKEN', '')
+                resolve()
+            }))
         }
     }
 }
 
-export default user

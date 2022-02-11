@@ -31,6 +31,15 @@ export default {
         }
     },
 
+    formPost(url, data) {
+        return axios.post(url, data, {
+            headers: {
+                Authorization: 'Your back-end user authenticates information',
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        });
+    },
+
     /**
      * put请求
      * @param url 接口路由

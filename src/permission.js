@@ -5,10 +5,9 @@ import router from "@/router";
 import {ACCESS_TOKEN} from '@/store/constants'
 
 router.beforeEach((to, from, next) => {
-    console.log('hi')
     let token = ls.get(ACCESS_TOKEN)
     if (!token) {
-        // next({ path: '/login', query: { redirect: to.fullPath } })
+        // todo: whitelist urls
         if (to.path === '/login') {
             // no token, login --> login
             next()
