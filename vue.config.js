@@ -1,3 +1,10 @@
+// yarn add dotenv-webpack
+const Dotenv = require('dotenv-webpack')
 module.exports = {
-  lintOnSave: false
+  lintOnSave: false,
+  configureWebpack: {
+    plugins: [
+        new Dotenv()
+    ]
+  }
 }

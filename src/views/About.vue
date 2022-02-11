@@ -9,7 +9,7 @@ export default {
   name: 'About',
   mounted() {
     this.$http
-        .get('https://www.httpbin.org/get')
+        .get('/get')
         .then(response => (console.log(response)))
         .catch(function (error) { // 请求失败处理
           console.log(error);
