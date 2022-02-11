@@ -19,9 +19,13 @@ let app = createApp(App)
 // use axios
 app.config.globalProperties.$http = http;
 // error handle
-app.config.errorHandler = (err, instance, info) => {
-    console.log(err)
-    console.log(instance)
-    console.log(info)
-}
+// const errorHandler = (err, vm, info) => {
+//     console.log('eeee')
+//     console.log(err)
+//     console.log(vm)
+//     console.log(info)
+// }
+// app.config.errorHandler = errorHandler
+// app.config.globalProperties.$throw = (err) => errorHandler(err, this)
+
 app.mount('#app')

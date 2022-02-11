@@ -27,6 +27,7 @@ export default {
                         reject(response)
                     }
                 }).catch(error => {
+                    console.log(error.response.data)
                     reject(error)
                 })
             })

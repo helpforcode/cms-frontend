@@ -40,7 +40,7 @@ export default {
 
       }).catch((error) => {
         // 500, 403, etc
-        console.log('login failed:', error)
+        console.log('login failed:', error.response.data.message)
       })
     }
   },

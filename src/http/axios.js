@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Toast} from '@nutui/nutui'
 
 // Full config:  https://github.com/axios/axios#request-config
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL || '';
@@ -42,6 +43,7 @@ axios.interceptors.response.use(response => {
                 // 对 401 错误进行处理
                 break
             default:
+                Toast.fail(error.response.data.message)
                 // 如果以上都不是的处理
                 return Promise.reject(error);
         }
